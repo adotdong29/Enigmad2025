@@ -1,0 +1,102 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float infinite ease-in-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+
+body {
+  background-color: #DDC0A4;
+}
+
+@layer base {
+  body {
+    @apply bg-[#DDC0A4];
+  }
+}
+
+@layer components {
+  .bombe-dot {
+    @apply w-8 h-8 rounded-full border-2 border-[#8B4513] 
+           transition-all duration-300 ease-in-out 
+           hover:border-[#D35400];
+  }
+
+  .bombe-dot-selected {
+    @apply bg-[#8B4513] border-[#8B4513];
+  }
+
+  .message-box {
+    @apply w-10 h-10 border-2 border-[#8B4513] 
+           bg-[#F5E6D3] 
+           flex items-center justify-center 
+           font-mono text-lg;
+  }
+
+  .btn-primary {
+    @apply bg-[#8B4513] text-[#F5E6D3] px-6 py-2 rounded-lg
+           hover:bg-[#D35400] 
+           transition-all duration-300 ease-in-out
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-success {
+    @apply bg-[#2E7D32] text-[#F5E6D3] px-6 py-2 rounded-lg
+           hover:bg-[#388E3C]
+           transition-all duration-300 ease-in-out
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+}
+
+/* Additional styles for the existing components */
+.enigma-font {
+  font-family: 'Courier Prime', monospace;
+}
+
+/* Update Instructions panel styling */
+.bg-blue-50 {
+  @apply bg-[#F5E6D3] border-2 border-[#8B4513];
+}
+
+.text-blue-800 {
+  @apply text-[#2C1810];
+}
+
+.text-blue-600 {
+  @apply text-[#8B4513] hover:text-[#D35400];
+}
+
+/* Update success message styling */
+.bg-green-100 {
+  @apply bg-[#F5E6D3] border-2 border-[#2E7D32];
+}
+
+.text-green-800 {
+  @apply text-[#2E7D32];
+}
