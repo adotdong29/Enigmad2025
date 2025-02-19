@@ -21,7 +21,7 @@ const Footer = () => {
 
       <div className="mt-4">
         <a
-          href="https://github.com/yourusername/enigmad"
+          href="https://github.com/adotdong29/Enigmad2025"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-800"

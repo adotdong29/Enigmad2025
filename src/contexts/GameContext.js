@@ -2,7 +2,6 @@
 import React, { createContext, useReducer, useContext } from 'react';
 import { levels } from '../data/levels';
 
-// Create and export the context
 export const GameContext = createContext();
 
 const initialState = {
@@ -16,7 +15,10 @@ const initialState = {
   score: 0,
   timeSpent: 0,
   errors: 0,
-  gameComplete: false
+  gameComplete: false,
+  showSuccess: false,
+  isTransitioning: false,
+  enterAnimation: false
 };
 
 const gameReducer = (state, action) => {
@@ -65,6 +67,26 @@ const gameReducer = (state, action) => {
         errors: state.errors + 1
       };
 
+    case 'SHOW_SUCCESS':
+      return {
+        ...state,
+        showSuccess: true
+      };
+
+    case 'START_TRANSITION':
+      return {
+        ...state,
+        isTransitioning: true,
+        showSuccess: false
+      };
+
+    case 'END_TRANSITION':
+      return {
+        ...state,
+        isTransitioning: false,
+        enterAnimation: true
+      };
+
     case 'NEXT_LEVEL':
       return {
         ...state,
@@ -74,7 +96,8 @@ const gameReducer = (state, action) => {
         decryptionKey: '',
         isRunning: false,
         showSolution: false,
-        userAnswer: ''
+        userAnswer: '',
+        enterAnimation: false
       };
 
     case 'GAME_COMPLETE':
@@ -98,16 +121,6 @@ export const GameProvider = ({ children }) => {
   );
 };
 
-// Remove this since we'll use the hook from the context file directly
-// export const useGameState = () => {
-//   const context = useContext(GameContext);
-//   if (!context) {
-//     throw new Error('useGameState must be used within a GameProvider');
-//   }
-//   return context;
-// };
-
-// Export everything needed
 export const useGameState = () => {
   const context = useContext(GameContext);
   if (!context) {
